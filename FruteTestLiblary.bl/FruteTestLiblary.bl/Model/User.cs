@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FruteTestLiblary.bl.Model
 {
+    [Serializable]
     public class User
     {
         public string Name {get; }
@@ -13,7 +14,7 @@ namespace FruteTestLiblary.bl.Model
         public DateTime DayOfBirth { get; }
 
         public double Weight { get; set; }
-
+        
         /// <summary>
         /// Конструктор нового пользователя
         /// </summary>

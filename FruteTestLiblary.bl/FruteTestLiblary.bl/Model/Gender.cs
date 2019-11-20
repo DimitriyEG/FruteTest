@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace FruteTestLiblary.bl.Model
 {
+    [Serializable]
     public class Gender
     {
         public string Name { get; }
 
-        Gender(string name)
+        public Gender(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
