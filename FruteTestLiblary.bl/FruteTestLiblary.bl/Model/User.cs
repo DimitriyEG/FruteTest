@@ -13,7 +13,7 @@ namespace FruteTestLiblary.bl.Model
         public Gender Gender{ get; set;}
         public DateTime DayOfBirth { get; set; }
         
-        public int Age {get{return ((DateTime.Now.Second - DayOfBirth.Second) / (60*60*24*365));}} 
+        public int Age {get{return ((DateTime.Now.Year - DayOfBirth.Year) );}} 
 
         public double Weight { get; set; }
         

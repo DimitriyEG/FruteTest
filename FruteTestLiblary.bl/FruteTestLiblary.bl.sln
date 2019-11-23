@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FruteTestLiblary.bl", "Frut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FruteTest.cmd", "FruteTest.cmd\FruteTest.cmd.csproj", "{88A36542-AF6A-4C6B-A554-4BCBB544A402}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FruteTestLiblary.blTests", "FruteTestLiblary.blTests\FruteTestLiblary.blTests.csproj", "{B6FFF947-6BB5-4431-B0E0-F05C566B2E1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{88A36542-AF6A-4C6B-A554-4BCBB544A402}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88A36542-AF6A-4C6B-A554-4BCBB544A402}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88A36542-AF6A-4C6B-A554-4BCBB544A402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6FFF947-6BB5-4431-B0E0-F05C566B2E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6FFF947-6BB5-4431-B0E0-F05C566B2E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6FFF947-6BB5-4431-B0E0-F05C566B2E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6FFF947-6BB5-4431-B0E0-F05C566B2E1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
