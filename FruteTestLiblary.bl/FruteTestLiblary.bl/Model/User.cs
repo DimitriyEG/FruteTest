@@ -10,8 +10,10 @@ namespace FruteTestLiblary.bl.Model
     public class User
     {
         public string Name {get; }
-        public Gender Gender{ get; }
-        public DateTime DayOfBirth { get; }
+        public Gender Gender{ get; set;}
+        public DateTime DayOfBirth { get; set; }
+        
+        public int Age {get{return ((DateTime.Now.Second - DayOfBirth.Second) / (60*60*24*365));}} 
 
         public double Weight { get; set; }
         
@@ -28,11 +30,11 @@ namespace FruteTestLiblary.bl.Model
             if (string.IsNullOrWhiteSpace(name))
             {
                 throw new ArgumentNullException("Имя пользователя не может быть пустым.");
-            } Name = name;
+            } 
             if(gender== null)
             {
                 throw new ArgumentNullException("`Пол` не может быть пустым.", nameof(gender));
-            } Gender = gender;
+            }
             if (daybirth < DateTime.Parse("01.01.1901") || daybirth > DateTime.Now )
             {
                 throw new ArgumentException("Невозможная дата рождения.", nameof(daybirth));
@@ -48,9 +50,19 @@ namespace FruteTestLiblary.bl.Model
             Weight = weight;
         }
 
+         public User(string name)
+        {
+            
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Имя пользователя не может быть пустым.");
+            } 
+            Name = name;
+         }
+
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age + " " + Gender.ToString();
         }
     }
 }

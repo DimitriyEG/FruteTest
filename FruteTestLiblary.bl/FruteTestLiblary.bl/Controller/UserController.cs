@@ -12,39 +12,62 @@ namespace FruteTestLiblary.bl.Controller
     public class UserController
     {
         
-        public User User { get; }
-        public UserController(string name, string genderType, DateTime birthDay, double weight)
+        public List<User> Users { get; }
+        public User CurrenUser { get; }
+        public bool IsNewUser { get;} = false;
+        public UserController(string usName)
         {
-            var gender = new Gender(genderType);
-            User = new User(name, gender, birthDay, weight);
+            if (string.IsNullOrWhiteSpace(usName))
+            {
+                throw new ArgumentNullException("");
+            }
+            Users = GetUserData();
+	        CurrenUser = Users.SingleOrDefault(u => u.Name == usName);
 
-           // User = user ?? throw new ArgumentNullException("Пользователь не может быть равен null", nameof(user));
+            if(CurrenUser == null)
+            {
+                CurrenUser = new User(usName);
+                IsNewUser = true;
+                Users.Add(CurrenUser);
+                Save();
+            }
+
         }
- 
-        
+        public void SetNewUserParam (string genderName, DateTime dayOfBirth, double weight = 20)
+        {
+            CurrenUser.Gender = new Gender(genderName);
+            CurrenUser.DayOfBirth = dayOfBirth;
+            CurrenUser.Weight = weight;
+            Save();
+        }
+
+        private List<User> GetUserData ()
+        {
+            var formatter = new BinaryFormatter();
+            using (var fs = new FileStream("userdata.txt", FileMode.OpenOrCreate))
+            {
+                if(formatter.Deserialize(fs) is List<User> users)
+                {
+                   return users;
+                }
+                else
+                {
+                    //throw new FileLoadException();
+                    return new List<User>();
+                }
+            }
+            }
+
         public void Save()
         {
             var formatter = new BinaryFormatter();
             using (var fs = new FileStream("userdata.txt", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, User);
+                formatter.Serialize(fs, Users);
             }
         }
 
-        public User Load()
-        {
-            var formatter = new BinaryFormatter();
-            using (var fs = new FileStream("userdata.txt", FileMode.OpenOrCreate))
-            {
-                if(formatter.Deserialize(fs) is User user)
-                {
-                    return user;
-                }
-                else
-                {
-                    throw new FileLoadException();
-                }
-            }
-        }
+        
+        
     }
 }
