@@ -9,12 +9,13 @@ using FruteTestLiblary.bl.Model;
 
 namespace FruteTestLiblary.bl.Controller
 {
-    public class UserController
+    public class UserController : BaseController
     {
         
         public List<User> Users { get; }
         public User CurrenUser { get; }
         public bool IsNewUser { get;} = false;
+        
         public UserController(string usName)
         {
             if (string.IsNullOrWhiteSpace(usName))
@@ -43,28 +44,12 @@ namespace FruteTestLiblary.bl.Controller
 
         private List<User> GetUserData ()
         {
-            var formatter = new BinaryFormatter();
-            using (var fs = new FileStream("userdata.txt", FileMode.OpenOrCreate))
-            {
-                if(fs.Length > 0 && formatter.Deserialize(fs) is List<User> users)
-                {
-                   return users;
-                }
-                else
-                {
-                    //throw new FileLoadException();
-                    return new List<User>();
-                }
-            }
-            }
+            return Load<List<User>>("userdata.txt") ?? new List<User>();
+        }
 
         public void Save()
         {
-            var formatter = new BinaryFormatter();
-            using (var fs = new FileStream("userdata.txt", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, Users);
-            }
+            Save("userdata.txt", Users);
         }
 
         
